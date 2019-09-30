@@ -15,6 +15,16 @@ public class Consumer {
 	}
 
 	public void consume() {
-		buffer.remove(0);
+		synchronized (View.lock) {
+			if(buffer.size() == 0) {
+				try {
+					View.lock.wait();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+			buffer.remove(0);
+			View.lock.notify();
+		}
 	}
 }

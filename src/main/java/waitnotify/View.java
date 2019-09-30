@@ -7,6 +7,7 @@ public class View {
 
 	private static List<Integer> buffer = new ArrayList<>();
 	private static final int SIZE = 100;
+	public static final Object lock = new Object();
 	
 	public static void main(String[] args) throws InterruptedException {
 		Producer producer = new Producer(buffer);
