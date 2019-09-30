@@ -14,7 +14,9 @@ public class Wrapper {
 	}
 	
 	public void iterate() {
-		number += 1;
+		synchronized(key) {
+			number += 1;
+		}
 	}
 	
 }
